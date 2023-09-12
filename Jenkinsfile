@@ -12,10 +12,6 @@ pipeline {
     label 'node'
   }
 
-  environment {
-    packageJSON = readJSON file: 'package.json'
-  }
-
   stages {
     stage('Build') {
       steps {
