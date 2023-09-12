@@ -15,11 +15,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        showBuild('INPROGRESS')
         sh 'node --version'
         sh 'npm --version'
         sh 'npm ci'
-        sh 'npm run build'
       }
     }
 
