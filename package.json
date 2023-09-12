@@ -1,0 +1,41 @@
+{
+  "name": "semantic-release-poc",
+  "version": "1.0.0",
+  "description": "",
+  "sideEffects": false,
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      {
+        "name": "beta|feature/**|task/**|hotfix/**",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "assets": [
+            "package.json"
+          ]
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "chmod +x release; ./release ${nextRelease.version} ${branch.name}"
+        }
+      ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:arivasnxt/semantic-release-poc.git"
+  },
+  "author": "",
+  "license": "UNLICENSED"
+}
