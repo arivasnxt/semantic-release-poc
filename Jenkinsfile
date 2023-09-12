@@ -8,10 +8,6 @@ pipeline {
     )
   }
 
-  agent {
-    label 'node'
-  }
-
   environment {
     packageJSON = readJSON file: 'package.json'
   }
