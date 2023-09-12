@@ -8,9 +8,9 @@ pipeline {
     )
   }
 
-  agent {
-    label 'node'
-  }
+    agent {
+        docker { image 'node:18.17.1-alpine3.18' }
+    }
 
   stages {
     stage('Build') {
@@ -24,7 +24,7 @@ pipeline {
     stage('Npm publish') {
       when {
         anyOf {
-          expression {params.RELEASE_BETA}
+          expression { params.RELEASE_BETA }
           expression { env.BRANCH_NAME.equals('main') }
           expression { env.BRANCH_NAME.equals('beta') }
           expression { env.BRANCH_NAME =~ /(\d+)\.(\d+)\.(\d+)/ }
